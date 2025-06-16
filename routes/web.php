@@ -123,3 +123,5 @@ Route::get('/listes', function(){
 //commande de creation d'un controllers: php artisan make:controller NomController
 
 Route::get('/listproduits', [ProductController::class, 'index'])->name('product.index');
+
+// ////////////////////LECON 13 ////////////////
