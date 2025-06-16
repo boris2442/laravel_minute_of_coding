@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ProductCOntroller;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -118,5 +119,7 @@ Route::get('/listes', function(){
     return "hello welcome to Laravel 12";
 })->name('home');
 
-// /////////////Lecon 12  NORION DE CONTROLLERS
+// /////////////Lecon 12  NOTION DE CONTROLLERS
 //commande de creation d'un controllers: php artisan make:controller NomController
+
+Route::get('/listproduits', [ProductController::class, 'index'])->name('product.index');
