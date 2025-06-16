@@ -111,3 +111,12 @@ Route::prefix('admin')->middleware('auth')->group(function(){
         return "Listes des commandes...";
     });
 });
+////////////Lecon 11 ///////////////////////////////////////
+//Lcon 11 Le nommage des routes
+
+Route::get('/listes', function(){
+    return "hello welcome to Laravel 12";
+})->name('home');
+
+// /////////////Lecon 12  NORION DE CONTROLLERS
+//commande de creation d'un controllers: php artisan make:controller NomController
