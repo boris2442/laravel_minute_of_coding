@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductCOntroller;
 
 Route::get('/', function () {
@@ -217,6 +218,8 @@ Route::get('/utilisateur/{id}', function ($id) use ($users) {
 //////////////////LECON 16: NOTION DE ORM ////////////
 
 //🔤 ORM = Object-Relational Mapping
-//role: 🔁 traduire automatiquement les objets PHP ↔️ les tables d’une base de données
+//role: 🔁 traduire automatiquement les objets PHP ↔️ les tables d’une base de données 
 
 Route::get('/create-product', [ProductController::class, 'index']);
+
+Route::get('/register', [AuthController::class, 'showSignUp'])->name('register');
