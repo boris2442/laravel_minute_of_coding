@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ProductCOntroller;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('blog.index');
 });
 Route::get('/hello', function () {
     return "hello word";
