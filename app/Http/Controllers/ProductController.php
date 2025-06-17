@@ -22,8 +22,14 @@ class ProductController extends Controller
     //     return $product;
     // }
 
-    public function index(){
-        $products=Product::all();
+    public function index()
+    {
+        $products = Product::all();
         return $products;
+    }
+    public function create(){
+        $product=Product::where('id', 2)->delete();
+        $product->delete();
+        return $product;
     }
 }
