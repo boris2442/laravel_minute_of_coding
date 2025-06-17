@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Article;
+use App\Models\Profile;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -17,6 +19,19 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+    public function articles()
+    {
+        return $this->hasMany(Article::class);  // definit une relation many to one
+    }
+
+
+
+
+
     protected $fillable = [
         'name',
         'email',
