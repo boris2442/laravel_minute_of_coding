@@ -1,0 +1,62 @@
+$users = [
+    1 => [
+        'name' => 'John Doe',
+        'email' => 'john.doe@example.com',
+        'age' => 30,
+        'description' => 'Développeur web passionné de technologies open source.'
+    ],
+    2 => [
+        'name' => 'Jane Smith',
+        'email' => 'jane.smith@example.com',
+        'age' => 25,
+        'description' => 'Graphiste créative spécialisée dans le design UX/UI.'
+    ],
+    3 => [
+        'name' => 'Alice Johnson',
+        'email' => 'alice.johnson@example.com',
+        'age' => 28,
+        'description' => 'Chef de projet avec 5 ans d’expérience en gestion agile.'
+    ],
+    4 => [
+        'name' => 'Mark Wilson',
+        'email' => 'mark.wilson@example.com',
+        'age' => 35,
+        'description' => 'Ingénieur réseau certifié Cisco, expert en cybersécurité.'
+    ],
+    5 => [
+        'name' => 'Emma Brown',
+        'email' => 'emma.brown@example.com',
+        'age' => 22,
+        'description' => 'Étudiante en informatique passionnée par l’IA et les données.'
+    ],
+    6 => [
+        'name' => 'Daniel Lee',
+        'email' => 'daniel.lee@example.com',
+        'age' => 29,
+        'description' => 'Développeur mobile spécialisé en Flutter et React Native.'
+    ],
+    7 => [
+        'name' => 'Olivia Martin',
+        'email' => 'olivia.martin@example.com',
+        'age' => 26,
+        'description' => 'Spécialiste marketing digital avec un intérêt pour le SEO.'
+    ],
+    8 => [
+        'name' => 'Liam Anderson',
+        'email' => 'liam.anderson@example.com',
+        'age' => 33,
+        'description' => 'Administrateur systèmes Linux, passionné par l’automatisation.'
+    ],
+    9 => [
+        'name' => 'Sophia White',
+        'email' => 'sophia.white@example.com',
+        'age' => 24,
+        'description' => 'Rédactrice technique avec une solide expérience en documentation logicielle.'
+    ],
+    10 => [
+        'name' => 'Noah Harris',
+        'email' => 'noah.harris@example.com',
+        'age' => 31,
+        'description' => 'Entrepreneur tech et coach en productivité personnelle.'
+    ],
+];
