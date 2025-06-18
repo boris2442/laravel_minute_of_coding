@@ -223,3 +223,4 @@ Route::get('/utilisateur/{id}', function ($id) use ($users) {
 Route::get('/create-product', [ProductController::class, 'index']);
 
 Route::get('/register', [AuthController::class, 'showSignUp'])->name('register');
+Route::post('/register', [AuthController::class, 'signUp'])->name('registration.register');

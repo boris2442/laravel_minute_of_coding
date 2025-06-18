@@ -2,6 +2,6 @@
 @section('title', 'inscription')
 @section('content')
 
-    <h1>Page d'inscription</h1>
+    <h1> inscription Page</h1>
 
 @endsection()
