@@ -24,14 +24,14 @@
         <div class='flex justify-between space-x-4 '>
             <ul class='flex items-center gap-2'>
                 <li>
-                    <a href='#' class='text-gray-300 '>Accueil</a>
+                    <a href='{{ route('home') }}' class='text-gray-300 '>Accueil</a>
                 </li>
                 <li>
                     <a href='#' class='text-gray-300 '>Contact</a>
                 </li>
             </ul>
         </div>
-        <a href='#'><i class='bx  bx-user text-white'></i> </a>
+        <a href='{{ route('login') }}'><i class='bx  bx-user text-white'></i> </a>
     </nav>
 
 

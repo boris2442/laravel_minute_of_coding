@@ -9,6 +9,12 @@
                 <p class='text-sm'>{{ session('success') }}</p>
             </div>
         @endif
+        @if (session()->has('errors'))
+            <div class='bg-red-100 text-red-500 border-red-500 px-4 py-3 rounded relative'>
+                <p class='font-bold'>Inscription reussie</p>
+                <p class='text-sm'>{{ session('errors') }}</p>
+            </div>
+        @endif
         <form action="{{ route('registration.register') }}" class="mt-4" method='POST'>
             @csrf
             <div class="mb-4">
@@ -44,7 +50,7 @@
             </div>
             <button type='submit'
                 class='text-white rounded-md w-full py-2 px-4 bg-gray-800 hover:bg-gray-900'>S'inscrire</button>
-            <p -500class='my-2 text-sm'> Deja un compte ? <a href='' class='text-red'>Se connecter</a></p>
+            <p -500class='my-2 text-sm'> Deja un compte ? <a href='{{ route('login') }}' class='text-red'>Se connecter</a></p>
 
         </form>
     </div>

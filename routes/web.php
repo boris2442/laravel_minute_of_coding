@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductCOntroller;
 
 Route::get('/', function () {
-    return view('blog.index');
+    return view('blog.index')->name('home');
 });
 Route::get('/hello', function () {
     return "hello word";
@@ -224,3 +224,8 @@ Route::get('/create-product', [ProductController::class, 'index']);
 
 Route::get('/register', [AuthController::class, 'showSignUp'])->name('register');
 Route::post('/register', [AuthController::class, 'signUp'])->name('registration.register');
+Route::get('/login', [AuthController::class, 'showFormLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard')->middleware('auth');
