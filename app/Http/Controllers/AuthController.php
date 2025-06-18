@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     //
-    public function showSignUp(){
+    public function showSignUp(){ // si l'utilisateur est connecter renvoie le vers la route dashboard si non,,, renvoie le vers la page register...
         if(Auth::check()){
             return redirect()->route('dashboard');
         }
@@ -22,6 +22,6 @@ class AuthController extends Controller
             'email'=>$request->email,
             'password'=>$request->password,
         ]);
-        return back()->with('success', 'Inscription reussi... Un emmail a ete envoye');
+        return back()->with('success', 'Inscription reussi... Un email de bienvenue  a ete envoye');
     }
 }
