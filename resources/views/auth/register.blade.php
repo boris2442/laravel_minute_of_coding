@@ -3,17 +3,17 @@
 @section('content')
 
     <div class='max-w-lg mx-auto p-6 bg-white rounded-md shadow-md '>
-        @if(session()->has('success'))
-        <div class='bg-green-100 text-green-500 border-green-500 px-4 py-3 rounded relative'>
-            <p class='font-bold'>Inscription reussie</p>
-            <p class='text-sm'>{{session('success')}}</p>
-        </div>
+        @if (session()->has('success'))
+            <div class='bg-green-100 text-green-500 border-green-500 px-4 py-3 rounded relative'>
+                <p class='font-bold'>Inscription reussie</p>
+                <p class='text-sm'>{{ session('success') }}</p>
+            </div>
         @endif
         <form action="{{ route('registration.register') }}" class="mt-4" method='POST'>
             @csrf
             <div class="mb-4">
                 <label for='name' class='block text-sm text-gray-700 font-sm'>Nom:</label>
-                <input type="text" id="name" class=" mt-1 p-3 block w-full border-gray-300 shadow-md ">
+                <input type="text" id="name" class=" mt-1 p-3 block w-full border-gray-300 shadow-md " name='name'>
                 @error('name')
                     <p class='bg-red-100 text-red-500 p-3 font-bold'>{{ $message }}</p>
                 @enderror

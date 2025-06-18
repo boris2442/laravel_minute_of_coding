@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Mail\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 // use App\Http\Controllers\AuthController;
 
 class AuthController extends Controller
@@ -20,14 +22,15 @@ class AuthController extends Controller
     public function signUp(Request $request){
         $request->validate([
           'name'=>'required|string|max:255',  
-          'name'=>'required|email|unique:users,email',  
-          'password'=>'required|string|min:6max|confirmed',  
+          'email'=>'required|email|unique:users,email',  
+          'password'=>'required|string|min:5|confirmed',  
         ]);
-            User::create([
+            $user=User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
         ]);
+        Mail::to($user->email)->send(new WelcomeMail($user));
         return back()->with('success', 'Inscription reussi... Un email de bienvenue  a ete envoye');
     }
 }
