@@ -19,7 +19,17 @@ class Article extends Model
         return $this->belongsTo(Category::class);  // definit une relation many to one
     }
 
-     public function tags(){
-      return $this->belongsToMany(Tag::class);  
-    }
+    //  public function tags(){
+    //   return $this->belongsToMany(Tag::class);  
+    // }
+    protected $fillable = [
+        'title',
+        'description',
+        'image',
+        'category_id',
+        'author_id',
+        'image'
+    ];
+    protected $guarded=['id']; 
+    
 }

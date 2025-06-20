@@ -9,8 +9,14 @@ class Category extends Model
 {
     //
     use HasFactory;
-     public function article()
+     public function articles()
     {
         return $this->hasMany(Article::class);  // definit une relation many to one
     }
+
+       protected $fillable = [  'name',];
+      
+  
+      
+    protected $guarded=['id']; 
 }

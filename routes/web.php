@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductCOntroller;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BlogController;
 
 Route::get('/', function () {
     return view('blog.index')->name('home');
@@ -241,3 +242,12 @@ Route::post('/logout', function (Request $request) {
     $request->session()->regenerateToken(); // on régénère le token CSRF
     return redirect('/login'); // ou '/' selon ton choix
 })->name('logout');
+
+//creer un article
+Route::get('/create', [BlogController::class, 'readCategories'])->name('blog.create')->middleware('auth');
+Route::post('/create', [BlogController::class, 'createArticle'])->name('article.store')->middleware('auth');
+
+
+route::get('/dashboard', [BlogController::class, 'dashboardArticle'])->name('dashboard')->middleware('auth');
+
+Route::delete('/article/{id}', [BlogController::class, 'deleteArticle'])->name('article.delete')->middleware('auth');
