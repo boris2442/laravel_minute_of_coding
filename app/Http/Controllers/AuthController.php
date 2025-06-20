@@ -28,16 +28,16 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
-             "email"=>"required|email",
-             "password"=>"required|string",
+            "email" => "required|email",
+            "password" => "required|string",
         ]);
-        if(Auth::attempt($request->only("email", "password"))){
+        if (Auth::attempt($request->only("email", "password"))) {
             return redirect()->intended('dashboard');
         }
-        return back()->withErrors(["email"=>"Les informations fournis ne correspondent pas!"]);
-
+        return back()->with("errors" , "Les informations fournis ne correspondent pas!");
     }
 
     public function signUp(Request $request)
@@ -55,4 +55,18 @@ class AuthController extends Controller
         Mail::to($user->email)->send(new WelcomeMail($user));
         return back()->with('success', 'Inscription reussi... Un email de bienvenue  a ete envoye');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        // return redirect('/login');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
+    }
+
+    // la fonction pour la deconnexion
+
+   
 }

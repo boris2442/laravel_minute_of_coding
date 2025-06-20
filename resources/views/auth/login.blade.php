@@ -9,6 +9,12 @@
                 <span class='text-sm sm:inline'>{{ session('success') }}</span>
             </div>
         @endif
+        @if(session()->has('error'))
+            <div class='bg-red-100 text-red-500 border-red-500 px-4 py-3 rounded relative'>
+                <p class='font-bold'>Error</p>
+                <span class='text-sm sm:inline'>{{ session('error') }}</span>
+            </div>
+         @endif
         <form action="{{ route('login.submit') }}" class="mt-4" method='POST'>
             @csrf
             

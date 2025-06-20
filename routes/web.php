@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductCOntroller;
 
@@ -229,3 +230,14 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
+// Route::post('/logout', function () {
+//     return view('logout');
+// })->name('logout');
+
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout(); // déconnexion de l'utilisateur
+    $request->session()->invalidate(); // on invalide la session
+    $request->session()->regenerateToken(); // on régénère le token CSRF
+    return redirect('/login'); // ou '/' selon ton choix
+})->name('logout');
