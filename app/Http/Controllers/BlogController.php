@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 //importation du model Article
@@ -51,16 +52,13 @@ class BlogController extends Controller
     //     return redirect()->route('dashboard')->with('success', 'Article crrer avec success');
     // }
 
-    public function createArticle(Request $request)
+    public function createArticle(ArticleRequest $request)
     {
-        $validateData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'category' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,jpg,svg,gif,png|max:2028',
-        ]);
+        $validateData = $request->validated();
 
-        $category = Category::firstOrCreate(['name' => $validateData['category']]);
+        $category = Category::firstOrCreate(
+            ['name' => $validateData['category']]
+        );
         $validateData['category_id'] = $category->id;
 
         if ($request->hasFile('image')) {
@@ -88,10 +86,48 @@ class BlogController extends Controller
         return view('dashboard', compact('articles'));
     }
 
-     public function deleteArticle($id)
+    public function deleteArticle($id)
     {
         $article = Article::findOrFail($id);
         $article->delete();
         return redirect()->route('dashboard')->with('success', 'article destroy with success');
+    }
+    public function dashboardArticleSingle($id)
+    {
+        $article = Article::findOrFail($id);
+        $categories = Category::all();
+        return view('blog.update', compact('article', 'categories'));
+    }
+    public function update(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            // 'category' => 'required|string|max:255',
+                'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpeg,jpg,svg,gif,png|webp|max:2028',
+        ]);
+        $article = Article::findOrFail($id);
+        if ($request->hasFile('image')) {
+            if ($article->image && file_exists(public_path($article->image))) {
+                unlink(public_path($article->image));
+            }
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validateData['image'] = 'images/' . $imageName;
+        } else {
+            $validateData['image'] = $article->image;
+        }
+        $article->update($validateData);
+        return redirect()->route('dashboard', $id)->with('success', 'Article modifier avec success');
+    }
+    public function index(){
+        $articles=Article::all();
+        return view('blog.index', compact('articles'));
+    }
+    public function show($id){
+        $article=Article::with('author')->findOrFail($id);
+        return view('blog.show', compact('article'));
     }
 }

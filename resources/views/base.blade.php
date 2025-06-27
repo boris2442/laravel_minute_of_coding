@@ -27,7 +27,7 @@
                     <a href='{{ route('home') }}' class='text-gray-300 '>Accueil</a>
                 </li>
                 <li>
-                    <a href='#' class='text-gray-300 '>Contact</a>
+                    <a href='{{ route('contact.show') }}' class='text-gray-300 '>Contact</a>
                 </li>
             </ul>
         </div>

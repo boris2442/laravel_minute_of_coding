@@ -4,12 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    return view('blog.index')->name('home');
-});
+Route::get('/', [BlogController::class, 'index'])->name('home');
+Route::get('/article/{id}', [BlogController::class, 'show'])->name('article.show');
 Route::get('/hello', function () {
     return "hello word";
 });
@@ -231,9 +231,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
-// Route::post('/logout', function () {
-//     return view('logout');
-// })->name('logout');
+
 
 
 Route::post('/logout', function (Request $request) {
@@ -246,8 +244,15 @@ Route::post('/logout', function (Request $request) {
 //creer un article
 Route::get('/create', [BlogController::class, 'readCategories'])->name('blog.create')->middleware('auth');
 Route::post('/create', [BlogController::class, 'createArticle'])->name('article.store')->middleware('auth');
-
+ 
 
 route::get('/dashboard', [BlogController::class, 'dashboardArticle'])->name('dashboard')->middleware('auth');
 
 Route::delete('/article/{id}', [BlogController::class, 'deleteArticle'])->name('article.delete')->middleware('auth');
+
+Route::get('/article/{id}/edit', [BlogController::class, 'dashboardArticleSingle'])->name('article.edit')->middleware('auth');
+Route::put('/article/{id}', [BlogController::class, 'update'])->name('article.update')->middleware('auth');
+
+
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('contact', [ContactController::class, 'send'])->name('contact.send');
