@@ -33,7 +33,11 @@
         </div>
         <a href='{{ route('login') }}'><i class='bx  bx-user text-white'></i> </a>
     </nav>
-
+<x-article-component title="Bienvenue sur notre site">
+    <p class='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Doloribus, cumque. Quisquam, voluptatum. Doloribus, cumque. Quisquam, voluptatum. Doloribus, cumque.
+        Quisquam, voluptatum.</p>
+</x-article-component>
 
 
     @yield('content');
